@@ -1,0 +1,36 @@
+// 공통으로 사용하는 @mixin
+
+
+// Background 이미지 (true : 가상선택자 사용, false : 단순 bg)
+@mixin background($pseudo:false, $target:before, $display:inline-block, $margin:null, $wsize:null, $hsize:null, $img:null, $color:null, $img-type:png, $pos:null, $bsize:null){
+    @if $pseudo == true{
+        &:#{$target}{
+            display:$display; margin:$margin; width:$wsize; height:$hsize; vertical-align:middle; content:"";
+            background:$color url('../img/' + $page + "/" + $img + "." + $img-type) $pos no-repeat;
+            background-size:$bsize;
+            @content;
+        }
+    }
+    
+    @else if $pseudo == false{
+        background:$color url('../img/' + $page + "/" + $img + "." + $img-type) $pos no-repeat;
+        background-size:$bsize;
+        @content;
+    }
+}
+
+// ClearFix
+@mixin clearfix{
+    display:block; clear:both; content:"";
+}
+
+// Text Ellipsis
+@mixin text-ellipsis{
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+@mixin text-line-ellipsis($line){
+    display:-webkit-box; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:$line; -webkit-box-orient:vertical; word-wrap:break-word;
+}
+
+// hide
+@mixin hide	{overflow:hidden;position:absolute;left:0;top:0;width:1px;height:1px;padding:0;border:0;clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);}

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hyunjin-K</title>
+	
+	<link rel="stylesheet" href="css/main.min.css">
+</head>
+<body>
+	<div class="skip_nav">
+		<a href="#content">본문으로 바로가기</a>
+	</div>
+	<div id="mainWrap" class="loaded" data-bg="pink"><!--//[D] 로드 된 후 .loaded 클래스 추가 -->
+		<button type="button" class="btn_menu">Menu</button>
+		<nav id="menu" style="display:none;">
+			<ul>
+				<!--
+				<li><a href="#popGameboy">GameBoy</a></li>
+				-->
+				<li><a href="#">Portfolio</a></li>
+				<li><a href="#popContact">Contact Me</a></li>
+			</ul>
+			<button type="button" class="btn_close">close menu</button>
+		</nav>
+		<main id="content">
+			<div class="main_txt">
+				<h1 class="logo">KHJ</h1>
+				<p class="dsc">HYUNJIN's Portfolio site</p>
+			</div>
+			<div class="bg_switch">
+				<h2 class="blind">Background Color Change</h2>
+				<ul class="list">
+					<li class="yellow"><button type="button" data-bgcolor="yellow">yellow</button></li>
+					<li class="pink"><button type="button" data-bgcolor="pink">pink</button></li>
+					<li class="blue"><button type="button" data-bgcolor="blue">blue</button></li>
+					<li class="green"><button type="button" data-bgcolor="green">green</button></li>
+				</ul>
+				<button type="button" class="btn_bg" data-target="1">Change</button>
+			</div>
+			<a href="#popGameboy" class="items gameboy">
+				<h2 class="blind">Gameboy Play</h2>
+				<div class="rolling">
+					<span class="txt">KHJ GAME®</span>
+				</div>
+			</a>
+			<div class="items baseball"><!--//[D] 게임 플레이 on시 .on_play 클래스 추가 -->
+				<h2 class="blind">Baseball Game Play</h2>
+				<button type="button" class="btn_switch">Baseball Game On/Off</button>
+				<div class="tool">
+					<div class="state">
+						<div class="strike">
+							<span class="txt">S</span>
+							<span id="countStrike" class="val">0</span>
+						</div>
+						<div class="ball">
+							<span class="txt">B</span>
+							<span id="countBall" class="val">0</span>
+						</div>
+					</div>
+					<div class="mitt">
+						<i data-pos="0"><!--//[D] data-pos 0: 공 미노출, 1 스트라이크 존 랜덤, 2~5 볼 랜덤 --></i>
+					</div>
+					<div class="bar">
+						<i></i>
+					</div>
+					<button type="button" class="btn_pitching">Pitching</button>
+				</div>
+			</div>
+			<a href="#popContact" class="items contact">
+				<h2 class="txt">CONTACT ME!</h2>
+			</a>
+			<a href="#" target="_blank" class="items portfolio">
+				<h2>Portfolio</h2>
+			</a>
+			<div class="items shelf"></div>
+			<div class="items pad">
+				<h2 class="blind">Canvas Pad</h2>
+				<canvas></canvas>
+			</div>
+			<div class="items player">
+				<h2 class="blind">Music Player</h2>
+				<button type="button" class="btn_play">Play</button>
+				<button type="button" class="btn_pause on">Stop</button>
+			</div>
+		</main>
+		<footer id="footer">
+			<p class="copyright">ⓒ Copied from Feels FM</p>
+			<ul class="link_list">
+				<li class="tistory"><a href="https://abcdqbbq.tistory.com/" target="_blank">Tistory</a></li>
+				<li class="mail"><a href="mailto:92729@naver.com">Mail</a></li>
+			</ul>
+		</footer>
+	</div>
+
+	<!-- pop : Gameboy -->
+	<div id="popGameboy" class="pop_wrap" style="display:none;">
+		<div class="pop_layer">
+			<div class="cont">
+				준비중...
+			</div>
+			<button type="button" class="btn_close">close</button>
+		</div>
+	</div>
+
+	<!-- pop : Contact -->
+	<div id="popContact" class="pop_wrap" style="display:none;">
+		<div class="pop_layer">
+			<div class="cont">
+				<ul class="info">
+					<li><strong>Mail</strong> : <a href="mailto:92729@naver.com">92729@naver.com</a></li>
+					<li><strong>tel</strong> : <a href="tel:01026014217">010-2601-4217</a></li>
+				</ul>
+				
+			</div>
+			<button type="button" class="btn_close">close</button>
+		</div>
+	</div>
+
+	<script>
+		window.addEventListener('load', function(){
+			// nav menu
+			function menuControl(){
+				const btnMenu = document.querySelector('.btn_menu');
+				const menu = document.querySelector('#menu');
+				const btnMenuClose = menu.querySelector('.btn_close');
+
+				btnMenu.addEventListener('click', function(){
+					menu.style.display = 'block';
+				});
+				btnMenuClose.addEventListener('click', function(){
+					menu.style.display = 'none';
+				});
+			}
+			menuControl();
+
+			// popup
+			function popupControl(){
+				// 팝업 열기
+				const btnPop = document.querySelectorAll('a[href^="#pop"]');
+				btnPop.forEach(evt => {
+					evt.addEventListener('click', function(e){
+						e.preventDefault();
+						let targetPop = document.querySelector(evt.getAttribute('href'));
+						targetPop.style.display = 'block';
+					});
+				});
+
+				// 팝업 닫기
+				const btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+				btnPopClose.forEach(evt => {
+					evt.addEventListener('click', function(){
+						evt.closest('.pop_wrap').style.display = 'none';
+					});
+				});
+			}
+			popupControl();
+
+			// Baseball
+			function pitchingSwitch(){
+				const btnSwitch = document.querySelector('.btn_switch');
+				const pitchBtn = document.querySelector('.btn_pitching');
+				const pitchBar = document.querySelector('.bar');
+				const pitchBarI = pitchBar.querySelector('i');
+				const strikeZone = document.querySelector('.mitt i');
+				let checkStrike = 0;	// 0: 볼, 1: 스트라이크
+				let windup = true;
+				let pitchCheck = true;
+
+				btnSwitch.addEventListener('click', function(){
+					if(this.closest('.baseball').classList.contains('on_play')){
+						this.closest('.baseball').classList.remove('on_play');
+					}else{
+						this.closest('.baseball').classList.add('on_play');
+					}
+				});
+
+				pitchBtn.addEventListener('click', function(){
+					if(pitchCheck === true){
+						if(windup === true){
+							pitchBar.classList.add('on');
+							windup = false;
+						}else {
+							pitchBar.classList.add('stop');
+							setTimeout(function(){
+								let barPos = Math.floor(pitchBarI.offsetLeft / pitchBar.clientWidth * 100);
+								console.log(barPos)
+								if(barPos >= 51 && barPos <= 71){
+									if(Math.random() < 0.7){
+										checkStrike = 1;
+									}else	{
+										checkStrike = 0;
+									}
+								}else if(barPos >= 72 && barPos <= 87){
+									checkStrike = 1;
+								}else{
+									checkStrike = 0;
+								}
+								drawBall();
+
+								pitchCheck = false;
+							}, 100);
+
+							// reset
+							setTimeout(function(){
+								pitchBar.className = 'bar';
+								strikeZone.setAttribute('data-pos', 0);
+								windup = true;
+								pitchCheck = true;
+							}, 2000);
+						}
+					}
+				});
+
+				// 피칭하지 않을 때 볼 처리
+				pitchBarI.addEventListener('animationend', function(){
+					let randomBall_2 = Math.floor(Math.random() * 3 + 2);
+					pitchBar.className = 'bar';
+					windup = true;
+					pitchCheck = false;
+					strikeZone.setAttribute('data-pos', randomBall_2);
+					
+					// reset
+					setTimeout(function(){
+						pitchCheck = true;
+						strikeZone.setAttribute('data-pos', 0);
+					}, 2000);
+				});
+
+				// 스트라이크 존 피칭
+				let countStrikeNum = 0;
+				let countBallNum = 0;
+				function drawBall(){
+					const countStrike = document.querySelector('#countStrike');
+					const countBall = document.querySelector('#countBall');
+					let randomStrike = 1;
+					let randomBall = Math.floor(Math.random() * 3 + 2);
+
+					if(checkStrike >= 1){
+						// strike
+						strikeZone.setAttribute('data-pos', randomStrike);
+						countStrikeNum++;
+						setTimeout(function(){
+							countStrike.innerText = countStrikeNum;
+						}, 500);
+					}else{
+						// ball
+						strikeZone.setAttribute('data-pos', randomBall);
+						countBallNum++;
+						setTimeout(function(){
+							countBall.innerText = countBallNum;
+						}, 500);
+					}
+				}
+			}
+			pitchingSwitch();
+
+			// bg-change
+			function changeBG(){
+				const wrap = document.querySelector('#mainWrap');
+				const btnBG = document.querySelector('.bg_switch .btn_bg');
+				const ArrColor = ['yellow', 'pink', 'blue', 'green'];
+				const switchList = document.querySelectorAll('.bg_switch .list button');
+				let targetColor = 1;
+
+				// 전체 스위치
+				btnBG.addEventListener('click', function(){
+					if(targetColor >= ArrColor.length-1){
+						targetColor = 0;
+					}else{
+						targetColor++;
+					}
+					wrap.setAttribute('data-bg', ArrColor[targetColor]);
+					this.setAttribute('data-target', targetColor);
+				});
+
+				// 각 버튼
+				switchList.forEach((evt, i) => {
+					evt.addEventListener('click', function(){
+						targetColor = i;
+						btnBG.setAttribute('data-target', targetColor);
+						let targetBG = evt.getAttribute('data-bgcolor');
+						wrap.setAttribute('data-bg', targetBG);
+					});
+				});
+			}
+			changeBG();
+
+			// music player
+			function playMusic(){
+				const player = document.querySelector('.items.player');
+				const playBtn = document.querySelector('.player .btn_play');
+				const pauseBtn = document.querySelector('.player .btn_pause');
+				const audioMp3 = new Audio('./sound/bgm_1.mp3');
+
+				// play
+				playBtn.addEventListener('click', function(){
+					this.classList.toggle('on');
+					pauseBtn.classList.remove('on');
+					audioMp3.play();
+					player.classList.add('playing');
+					player.classList.remove('on_stop');
+				});
+
+				// pause
+				pauseBtn.addEventListener('click', function(){
+					this.classList.toggle('on');
+					playBtn.classList.remove('on');
+					audioMp3.pause();
+					player.classList.add('on_stop');
+				});
+			}
+			playMusic();
+		});
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+// Reset CSS
+body	{position:relative; margin:0; padding:0; font-family:"Malgun Gothic", Dotum, arial, sans-serif; font-weight:normal; font-size:12px; color:#212121; -webkit-text-size-adjust:none;}
+dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, button {margin:0; padding:0;}
+th, td, input, textarea, select {font-size:12px; color:#212121; font-family:"Malgun Gothic", Dotum, arial, sans-serif;}
+th, td {padding:0; word-break:break-all; word-wrap:break-word;}
+table {border-spacing:0; border:0;}
+em {font-style:normal;}
+ol, ul {list-style:none;}
+legend, caption {visibility:hidden; overflow:hidden; line-height:0; width:0; height:0; margin:0; padding:0;}
+img, fieldset {border: 0 none;}
+a {color:#212121; text-decoration:none; cursor:pointer;}
+input, img {vertical-align:middle;}
+button {border:0; background-color:transparent; cursor: pointer; font-family: "Malgun Gothic",Dotum,arial,sans-serif;outline:none;}
+textarea {resize:none;}
+input[disabled=disabled] {background-color:#eee;}
+i {font-style:normal;}
+
+// skip navigation
+.skip_nav a {position:absolute; top:-20px; left:0px; border:1px solid #dad0d0; background:#f9f9f9; height:20px; line-height:20px; font-size:13px; box-sizing:border-box;}
+
+.skip_nav a:focus {top:0px; z-index:9999;}
+
+// hide text 
+.hide {overflow:hidden; position:absolute; width:1px; height:1px; padding:0; border:0; clip:rect(1px, 1px, 1px, 1px); clip-path:inset(50%);}
+
+// scroll fix 
+.scroll_fix body {overflow:hidden;}
