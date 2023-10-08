@@ -279,11 +279,11 @@
 
 @media screen and (max-width:768px)	{
 	#mainWrap	{
-		.btn_menu	{top:-5%;left:2%;}
+		.btn_menu	{top:-56px;left:2%;}
 		.items	{
 			display:none;
 			&.player	{
-				display:block;left:2%;background-image:url(../img/img_player_small.png);width:233px;height:40px;
+				display:block;bottom:0;left:2%;background-image:url(../img/img_player_small.png);width:233px;height:40px;
 				&:before,
 				&:after	{display:none;}
 				button	{
