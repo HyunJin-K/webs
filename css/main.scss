@@ -64,10 +64,10 @@
 				&.blue button	{background:#39d0ff;}
 				&.green button	{background:#00ed9e;}
 			}
-			button	{width:18px;height:18px;border:2px solid #fff;border-radius:50%;text-indent:-9999px;box-sizing:border-box;box-shadow:-2px 2px 1px 1px #0080ff;}
+			button	{width:18px;height:18px;border:2px solid #fff;border-radius:50%;text-indent:-9999px;box-sizing:border-box;box-shadow:-2px 2px 1px 1px #0080ff;touch-action:manipulation;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
 		}
 		.btn_bg	{
-			background:#fff url(../img/img_switch.png) no-repeat 50% 50%;background-size:80%;width:100%;height:106px;box-shadow:0 4px 1px 1px #0080ff;border-radius:50%;text-indent:-9999px;transition:0.3s all;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;transform:translateZ(0);backface-visibility:hidden;
+			background:#fff url(../img/img_switch.png) no-repeat 50% 50%;background-size:80%;width:100%;height:106px;box-shadow:0 4px 1px 1px #0080ff;border-radius:50%;text-indent:-9999px;transition:0.3s all;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;transform:translateZ(0);backface-visibility:hidden;touch-action:manipulation;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
 			&[data-target="0"]	{transform:rotate(-20deg);}
 			&[data-target="2"]	{transform:rotate(24deg);}
 			&[data-target="3"]	{transform:rotate(48deg);}
@@ -93,7 +93,7 @@
 				.btn_pitching	{pointer-events:auto;}
 			}
 			.btn_switch	{
-				position:absolute;top:76px;left:50%;margin-left:-32px;background:url(../img/bg_switch.png) no-repeat 0 0;background-size:contain;width:65px;height:65px;font-size:0;transition:0.5s all;z-index:1;
+				position:absolute;top:76px;left:50%;margin-left:-32px;background:url(../img/bg_switch.png) no-repeat 0 0;background-size:contain;width:65px;height:65px;font-size:0;transition:0.5s all;z-index:1;touch-action:manipulation;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
 				&:after	{position:absolute;top:50%;left:50%;margin:-12px 0 0 -6px;background:url(../img/icon_switch.png) no-repeat 0 0;background-size:contain;width:13px;height:24px;content:'';}
 			}
 			.tool	{opacity:0.1;transition:0.5s opacity;}
@@ -307,11 +307,5 @@
 			&.pad,
 			&.contact	{display:none;}
 		}
-	}
-}
-@media screen and (max-height:860px) and (max-width:960px)	{
-	#mainWrap	{
-		
-		
 	}
 }
