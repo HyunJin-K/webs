@@ -128,7 +128,7 @@
 				}
 				i	{width:2px;height:120%;position:absolute;top:50%;transform:translateY(-50%);left:8%;background:#fff;box-shadow:0 0 8px 2px #fff;}
 			}
-			.btn_pitching	{position:absolute;bottom:0;left:50%;background:#f74949;padding:2px 10px;color:#fff;border-radius:20px;font-weight:bold;font-size:16px;transform:translateX(-50%);pointer-events:none;}
+			.btn_pitching	{position:absolute;bottom:0;left:50%;background:#f74949;padding:2px 10px;color:#fff;border-radius:20px;font-weight:bold;font-size:16px;transform:translateX(-50%);pointer-events:none;touch-action:manipulation;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
 		}
 		&.contact	{
 			bottom:0;left:24%;background-image:url(../img/img_tv.png);width:243px;height:257px;
