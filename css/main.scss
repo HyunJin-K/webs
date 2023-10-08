@@ -255,22 +255,22 @@
 		.items	{
 			&.gameboy	{left:5%;}
 			&.shelf	{display:none;}
-			&.portfolio	{top:-7%;right:10%;}
+			&.portfolio	{top:-64px;right:10%;}
 			&.pad	{right:2%;}
-			&.player	{bottom:-10%;}
-			&.contact	{bottom:-8%;left:30%;}
+			&.player	{bottom:-150px;}
+			&.contact	{bottom:-70px;left:30%;}
 		}
 	}
 }
 
 @media screen and (max-width:960px) and (min-width:769px) {
 	#mainWrap	{
-		.btn_menu	{top:-4%;}
+		.btn_menu	{top:-32px;}
 		.items	{
 			&.gameboy	{left:-7%;}
 			&.pad	{right:8%;}
-			&.player	{bottom:-10%;left:-5%;}
-			&.portfolio	{top:-12%;right:0;}
+			&.player	{bottom:-120px;left:-5%;}
+			&.portfolio	{top:-104px;right:0;}
 			&.shelf,
 			&.contact	{display:none;}
 		}
@@ -283,7 +283,7 @@
 		.items	{
 			display:none;
 			&.player	{
-				display:block;bottom:0;left:2%;background-image:url(../img/img_player_small.png);width:233px;height:40px;
+				display:block;bottom:0 !important;left:2%;background-image:url(../img/img_player_small.png);width:233px;height:40px;
 				&:before,
 				&:after	{display:none;}
 				button	{
@@ -296,14 +296,22 @@
 	}
 }
 
-@media screen and (max-height:860px) and (max-width:960px)	{
+@media screen and (max-height:860px)	{
 	#mainWrap	{
 		#content:before	{display:none;}
 		.items	{
+			&.baseball	{margin-top:-100px;right:20px;}
 			&.portfolio	{top:-150px;}
 			&.player	{bottom:-240px;}
 			&.gameboy	{margin-top:-180px;}
-			&.pad	{display:none;}
+			&.pad,
+			&.contact	{display:none;}
 		}
+	}
+}
+@media screen and (max-height:860px) and (max-width:960px)	{
+	#mainWrap	{
+		
+		
 	}
 }
