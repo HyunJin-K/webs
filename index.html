@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="initial-scale=1.0, width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>Hyunjin-K</title>
 	<link rel="stylesheet" href="css/main.min.css">
 </head>
@@ -10,7 +10,7 @@
 	<div class="skip_nav">
 		<a href="#content">본문으로 바로가기</a>
 	</div>
-	<div id="mainWrap" class="loaded" data-bg="pink"><!--//[D] 로드 된 후 .loaded 클래스 추가 -->
+	<div id="mainWrap" data-bg="pink"><!--//[D] 로드 된 후 .loaded 클래스 추가 -->
 		<button type="button" class="btn_menu">Menu</button>
 		<nav id="menu" style="display:none;">
 			<ul>
@@ -116,9 +116,17 @@
 		</div>
 	</div>
 
+	<!-- LOADING... -->
+	<div class="load_area">
+		<div class="cont">
+			LOADING...
+		</div>
+	</div>
+
 	<script src="./js/ui.js"></script>
 	<script>
 		window.addEventListener('load', function(){
+			loadFnc();
 			menuControl();
 			popupControl();
 			pitchingSwitch();

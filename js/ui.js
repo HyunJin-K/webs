@@ -1,3 +1,15 @@
+// Common variable
+const wrap = document.querySelector('#mainWrap');
+
+// LOADING
+function loadFnc(){
+	const loadArea = document.querySelector('.load_area');
+	setTimeout(function(){
+		loadArea.style.display = 'none';
+		wrap.classList.add('loaded');
+	},500);
+}
+
 // nav menu
 function menuControl(){
 	const btnMenu = document.querySelector('.btn_menu');
@@ -136,7 +148,6 @@ function pitchingSwitch(){
 
 // bg-change
 function changeBG(){
-	const wrap = document.querySelector('#mainWrap');
 	const btnBG = document.querySelector('.bg_switch .btn_bg');
 	const ArrColor = ['yellow', 'pink', 'blue', 'green'];
 	const switchList = document.querySelectorAll('.bg_switch .list button');
