@@ -199,3 +199,10 @@ function playMusic(){
 		player.classList.add('on_stop');
 	});
 }
+
+// Canvas
+const canvas = document.querySelector('.pad canvas');
+const ctx = canvas.getContext('2d');
+
+ctx.rect(50, 50, 100, 100);
+ctx.stroke();

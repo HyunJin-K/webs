@@ -1,0 +1,78 @@
+//이벤트 css reset
+//version 1.3.0
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 0;
+  }
+  html {
+    -webkit-text-size-adjust: none;
+    font-size: 14px;
+  }
+  body {
+    font-family:arial, sans-serif;
+  }
+  body:lang(ko) {
+    word-break: keep-all;
+  }
+  img {
+    width: 100%;
+    vertical-align: top;
+    pointer-events: none;
+  }
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-family: inherit;
+  }
+  a,
+  button,
+  select,
+  input,
+  label {
+    cursor: pointer;
+    outline: 0;
+  }
+  button {
+    font-family: inherit;
+    font-size: inherit;
+    vertical-align: top;
+    background: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    &_start {
+      display: flex;
+      align-items: center;
+    }
+    &_end {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    &_item {
+      display: block;
+      width: 100%;
+    }
+  }
+  input {
+    &::-webkit-input-placeholder {
+      font-size: 2rem;
+      color: #000;
+    }
+    &::placeholder {
+      font-size: 2rem;
+      color: #000;
+    }
+  }
+  
