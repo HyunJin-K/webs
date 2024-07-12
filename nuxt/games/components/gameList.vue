@@ -34,7 +34,7 @@
     .info   {
         padding:10px 10px 50px;
         .tit    {font-size:16px;display:block;}
-        .dsc    {margin-top:5px;}
+        .dsc    {margin-top:5px;height:34px;line-height:17px;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient: vertical;}
         .developer  {position:absolute;color:#999;text-align:right;bottom:10px;right:10px;}
     }
 </style>
