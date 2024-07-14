@@ -89,6 +89,11 @@ const changeGenre = () => {
     currentPage.value = 1;
 }
 
+// search
+// 1. input에 값을 v-model로 받아온다
+// 2. 받아온 값을 소문자로 변환한다.
+// 3. 현재 필터링 되어있는 defaultData에서 받아온 소문자로 변환한 값을 게임명으로 filter 처리해서 다시 defaultData로 담는다.
+// 4. 검색어를 비우고 검색했을 경우 다시 전체를 노출한다.
 </script>
 
 <style lang="scss" scoped>
