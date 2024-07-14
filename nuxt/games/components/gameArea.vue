@@ -1,7 +1,21 @@
 <template>
     <div class="game_wrap">
-        <h2 class="title">{{ totalPage }}</h2>
-        <h2>{{ startPage }}</h2>
+        <h2 class="title">{{totalPage}}</h2>
+        <h2 class="title">{{totalPagination}}</h2>
+        <div class="tool">
+            <div class="select">
+                <select name="gameGenre" v-model="selectGenre" @change="changeGenre()">
+                    <option value="all">All</option>
+                    <option value="MMORPG">MMORPG</option>
+                    <option value="Shooter">Shooter</option>
+                    <option value="Action RPG">Action RPG</option>
+                </select>
+            </div>
+            <div class="ipt">
+                <input type="text" placeholder="search">
+                <button type="button">Search</button>
+            </div>
+        </div>
         <ul class="game_list">
             <li v-for="(game, index) in posts" :key="index">
                 <gameList :game-target="game"></gameList>
@@ -9,42 +23,40 @@
         </ul>
         <div class="pagination">
             <button type="button" :class="['btn_prev', { off: currentPage === 1 }]"
-                @click="currentPage > 1 ? currentPage-- : ''">prev</button>
+                @click="currentPage !== 1 ? prevMove() : ''">prev</button>
             <ul class="number">
-                <li v-for="(page, index) in totalPage" :key="index">
-                    <button type="button" @click="currentPage = index + 1">{{ page }}</button>
+                <li v-for="(page, index) in totalPage" :key="index" :class="{on: currentPage === totalPage[index]}">
+                    <button type="button" @click="currentPage = totalPage[index]">{{ page }}</button>
                 </li>
             </ul>
-            <button type="button" :class="['btn_next']"
-                @click="currentPage < totalPage.length ? nextMove() : ''">next</button>
+            <button type="button" :class="['btn_next', {off: currentPage === totalPagination}]"
+                @click="currentPage !== totalPagination ? nextMove() : ''">next</button>
         </div>
     </div>
 </template>
 
 <script setup>
 const defaultStore = useDefaultStore();
+const defaultData = ref(defaultStore.gameData);
 const currentPage = ref(1); // 현재 페이지
 const postView = 12;    // 한 페이지당 몇개씩 보여줄지
-const startPage = ref(1);
+const pageView = 10;    // 한 번에 보여줄 pagination 수
+const startPage = ref(1);   // 각 pagination별 시작 페이지 넘버
 
+
+const totalPagination = computed(()=>{
+    return Math.ceil(defaultData.value.length / postView);
+})
 const posts = computed(() => {
     const startIndex = (currentPage.value - 1) * postView;
-    const lastIndex = startIndex + postView
-    return defaultStore.gameData.slice(startIndex, lastIndex);
+    const lastIndex = startIndex + postView;
+    return defaultData.value.slice(startIndex, lastIndex);
 });
 const totalPage = computed(() => {
-    // let totals = Math.ceil(defaultStore.gameData.length / postView);
-    // if(totals > 10){
-    //     return 10
-    // }else{
-    //     return totals
-    // }
-    // return Math.ceil(defaultStore.gameData.length / postView);
-    
-    let totals = Math.ceil(defaultStore.gameData.length / postView);
     let endPage = ref(0)
-    totals > (startPage.value + 10) ? endPage.value = (startPage.value + 9) : endPage.value = 10
-    let pages = [];
+    totalPagination.value >= (startPage.value + pageView) ? endPage.value = (startPage.value + (pageView - 1)) : endPage.value = startPage.value + (totalPagination.value % pageView - 1)
+
+    const pages = [];
     for (let i = startPage.value; i <= endPage.value; i++) {
         pages.push(i);
     }
@@ -52,13 +64,31 @@ const totalPage = computed(() => {
 });
 
 const nextMove = () => {
-        currentPage.value++;
-    if (totalPage.value.length <= currentPage.value) {
-        console.log(119)
-        startPage.value += 10;
-    }else{
+    if (currentPage.value%pageView === 0) {
+        startPage.value += pageView;
     }
+    currentPage.value++;
 }
+const prevMove = () => {
+    if(currentPage.value%pageView === 1){
+        startPage.value -= pageView;
+    }
+    currentPage.value--;
+}
+
+// select
+const selectGenre = ref('all');
+
+const changeGenre = () => {
+    if(selectGenre.value === 'all'){
+        defaultData.value = defaultStore.gameData
+    }else{
+        defaultData.value = defaultStore.gameData.filter(e => e.genre === selectGenre.value);
+    }
+    startPage.value = 1;
+    currentPage.value = 1;
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -83,7 +113,19 @@ const nextMove = () => {
         position: relative;
     }
 }
-
+.tool   {
+    display:flex;padding:2% 1%;
+    justify-content: space-between;
+    .select {
+        width:30%;height:30px;border:1px solid #ccc;
+        select  {width:100%;height:100%;padding:0 10px;}
+    }
+    .ipt    {
+        width:38%;height:30px;border:1px solid #ccc;
+        input   {width:70%;height:100%;font-size:14px;padding:0 10px;}
+        button  {width:30%;height:100%;border-left:1px solid #ccc;font-size:12px;}
+    }
+}
 .pagination {
     display: flex;
     margin-top: 20px;
@@ -132,6 +174,9 @@ const nextMove = () => {
 
         li {
             margin-left: 4px;
+            &.on    {
+                button  {background:#000;color:#fff;}
+            }
         }
     }
 }
