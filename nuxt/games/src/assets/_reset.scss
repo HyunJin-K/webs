@@ -46,33 +46,14 @@
   a {
     text-decoration: none;
   }
-  .flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    &_start {
-      display: flex;
-      align-items: center;
-    }
-    &_end {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    &_item {
-      display: block;
-      width: 100%;
-    }
-  }
   input {
     &::-webkit-input-placeholder {
-      font-size: 2rem;
-      color: #000;
+      font-size: inherit;
+      color: #999;
     }
     &::placeholder {
-      font-size: 2rem;
-      color: #000;
+      font-size: inherit;
+      color: #999;
     }
   }
   

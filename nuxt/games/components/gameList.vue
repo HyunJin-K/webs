@@ -1,19 +1,17 @@
 <template>
-    <a :href="gameTarget.game_url">
+    <NuxtLink :to="`/gameDetail/${gameTarget.id}`">
         <div class="thmb">
             <img :src="gameTarget.thumbnail" alt="">
             <div class="genre">{{ gameTarget.genre }}</div>
         </div>
         <div class="info">
             <strong class="tit">{{ gameTarget.title }}</strong>
-            <p class="dsc">{{ gameTarget.short_description }}</p>
             <div class="developer">{{ gameTarget.developer }}</div>
         </div>
-    </a>
+    </NuxtLink>
 </template>
 
 <script setup>
-    const defaultStore = useDefaultStore();
     defineProps({
         gameTarget: Object
     })
@@ -32,9 +30,9 @@
         .genre  {position:absolute;background:#fff;padding:4px 8px;top:5%;left:2%;font-size:11px;font-weight:bold;}
     }
     .info   {
-        padding:10px 10px 50px;
-        .tit    {font-size:16px;display:block;}
-        .dsc    {margin-top:5px;height:34px;line-height:17px;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient: vertical;}
-        .developer  {position:absolute;color:#999;text-align:right;bottom:10px;right:10px;}
+        padding:10px 10px 40px;
+        .tit    {font-size:15px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        // .dsc    {margin-top:5px;height:34px;line-height:17px;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient: vertical;}
+        .developer  {position:absolute;color:#999;text-align:right;bottom:10px;right:10px;font-size:11px;}
     }
 </style>

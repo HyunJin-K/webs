@@ -1,11 +1,11 @@
 <template>
-    main'
-    <NuxtLink to="/gameDetail">goto list</NuxtLink>
+    <GameArea></GameArea>
 </template>
 
 <script setup>
+
 </script>
 
 <style lang="scss" scoped>
-  
+   
 </style>
